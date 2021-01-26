@@ -1,25 +1,32 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Provider} from 'react-redux';
+import {store} from "./redux/store";
+import {HashRouter, Route, Switch} from 'react-router-dom';
+import {AuthenticatedRoute} from "./components/AuthenticatedRoute";
+import Login from "./views/Login";
+import Home from "./views/Home";
+import Chat from "./views/Chat";
+import axios from "axios";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+export default function App() {
+    axios.interceptors.response.use(function (response) {
+        return response;
+    }, function (error) {
+        if (401 === error.response.status) {
+            return Promise.reject(error);
+        }
+    });
+
+    return (
+    <Provider store={store}>
+      <HashRouter>
+          <Switch>
+            <AuthenticatedRoute path={"/home"} exact component={Home} />
+            <AuthenticatedRoute path={"/chat"} component={Chat} />
+            <Route path={"/login"} exact component={Login}/>
+            <Route path={"/404"} render={() => (<div>404</div>)} />
+          </Switch>
+      </HashRouter>
+    </Provider>
   );
 }
-
-export default App;

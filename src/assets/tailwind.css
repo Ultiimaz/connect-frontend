@@ -1,0 +1,32 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+.content {
+ background-color: #7a2c9e;
+}
+
+.bg-dark {
+  background-color: #212121;
+}
+.card-lighter {
+  background-color: #C4C4C4;
+}
+.card-light {
+  background-color: rgba(196, 196, 196, 80);
+}
+
+.center {
+  margin: auto;
+  width: 50%;
+  border: 3px solid green;
+  padding: 10px;
+}
+.draggable {
+  width: 100%;
+  height: 100%;
+  -webkit-app-region: drag;
+
+}
