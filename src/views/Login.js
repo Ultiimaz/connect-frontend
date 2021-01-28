@@ -17,8 +17,8 @@ const Login = props => {
     }
   }
   return (
-    <>
-    <div className="m-auto w-1/2 p-10">
+    <div className="flex flex-row">
+    <div className="m-auto w-1/3 p-10">
      <Form onSubmit={authenticate}>
       <Textbox id={"email"} label="Email" value={email} onChange={event => setEmail(event.target.value)} type="textbox"/>
       <Textbox id={"password"} label="Password" value={password} onChange={event => setPassword(event.target.value)} type="password"/>
@@ -26,7 +26,9 @@ const Login = props => {
      </Form>
         <button onClick={() => authenticate()}>Sign in with Google</button>
     </div>
-      </>
+
+        <div className="border border-red-500 w-1/2 h-screen"> there is coming something here</div>
+      </div>
   );
 }
 export default Login;
