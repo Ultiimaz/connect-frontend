@@ -7,6 +7,7 @@ import Login from "./views/Login";
 import Home from "./views/Home";
 import Chat from "./views/Chat";
 import axios from "axios";
+import LandingPage from "./views/LandingPage";
 
 export default function App() {
     axios.interceptors.response.use(function (response) {
@@ -21,6 +22,7 @@ export default function App() {
     <Provider store={store}>
       <HashRouter>
           <Switch>
+              <Route path={"/"} exact component={LandingPage}/>
             <AuthenticatedRoute path={"/home"} exact component={Home} />
             <AuthenticatedRoute path={"/chat"} component={Chat} />
             <Route path={"/login"} exact component={Login}/>
